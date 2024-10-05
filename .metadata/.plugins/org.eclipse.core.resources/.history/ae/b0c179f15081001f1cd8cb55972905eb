@@ -1,0 +1,18 @@
+package com.test.one;
+
+public class FirstClass {
+
+	public void methodNonVoid() {
+		System.out.println("Non static method");
+	}
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}
+
+class Second{
+	
+}

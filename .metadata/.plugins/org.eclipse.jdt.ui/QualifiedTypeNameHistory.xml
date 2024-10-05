@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="com.jsp.implementation.Web"/>
+    <fullyQualifiedTypeName name="com.jsp.Creation.Transction"/>
+    <fullyQualifiedTypeName name="com.jsp.implementation.Atm"/>
+    <fullyQualifiedTypeName name="com.jsp.implementation.User"/>
+    <fullyQualifiedTypeName name="com.jsp.bankuser.Atm"/>
+    <fullyQualifiedTypeName name="com.jsp.bankuser.PhonePay"/>
+    <fullyQualifiedTypeName name="com.jsp.account.GPay"/>
+    <fullyQualifiedTypeName name="com.jsp.account.Account"/>
+    <fullyQualifiedTypeName name="com.jsp.account.Transaction"/>
+    <fullyQualifiedTypeName name="com.jsp.bankuser.BankUser"/>
+    <fullyQualifiedTypeName name="com.jsp.cards.CreditCard"/>
+    <fullyQualifiedTypeName name="com.jsp.cards.DebitCar"/>
+    <fullyQualifiedTypeName name="com.sjp.accounts.Account"/>
+    <fullyQualifiedTypeName name="com.jsp.shopping.Shopping"/>
+    <fullyQualifiedTypeName name="com.jsp.shopping.ModeOfPayment"/>
+    <fullyQualifiedTypeName name="java.security.DomainCombiner"/>
+    <fullyQualifiedTypeName name="java.util.Collection"/>
+    <fullyQualifiedTypeName name="java.util.LinkedList"/>
+    <fullyQualifiedTypeName name="java.lang.reflect.Array"/>
+    <fullyQualifiedTypeName name="java.sql.Array"/>
+    <fullyQualifiedTypeName name="javax.swing.text.html.HTMLDocument.Iterator"/>
+    <fullyQualifiedTypeName name="java.util.LinkedHashMap"/>
+    <fullyQualifiedTypeName name="java.io.FileWriter"/>
+    <fullyQualifiedTypeName name="java.io.File"/>
+    <fullyQualifiedTypeName name="java.io.FileReader"/>
+    <fullyQualifiedTypeName name="java.util.Comparator"/>
+    <fullyQualifiedTypeName name="java.util.TreeMap"/>
+    <fullyQualifiedTypeName name="java.util.Collections"/>
+    <fullyQualifiedTypeName name="java.util.Vector"/>
+    <fullyQualifiedTypeName name="java.util.TreeSet"/>
+    <fullyQualifiedTypeName name="java.util.Iterator"/>
+    <fullyQualifiedTypeName name="java.io.PushbackInputStream"/>
+    <fullyQualifiedTypeName name="java.util.Set"/>
+    <fullyQualifiedTypeName name="java.lang.Integer"/>
+    <fullyQualifiedTypeName name="java.util.HashSet"/>
+    <fullyQualifiedTypeName name="java.util.Arrays"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="com.test.sample.TestOne"/>
+    <fullyQualifiedTypeName name="java.lang.System"/>
+    <fullyQualifiedTypeName name="java.util.Scanner"/>
+    <fullyQualifiedTypeName name="java.lang.String"/>
+</qualifiedTypeNameHistroy>

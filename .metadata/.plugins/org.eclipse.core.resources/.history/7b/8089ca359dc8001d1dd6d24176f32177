@@ -1,0 +1,34 @@
+package com.jsp.wo;
+
+class Run{
+	synchronized public void age() {
+		for ( int i= 20;i<=30;i++)
+		{
+			System.out.println(i);
+		}
+	}
+}
+
+
+
+
+
+public class SynchroMethod extends Thread {
+	
+	Run r = new Run();
+	@Override
+	public void run() {
+		r.age();
+	}
+	
+	
+	
+	
+
+	public static void main(String[] args) {
+		SynchroMethod s1= new SynchroMethod();
+		s1.start();
+
+	}
+
+}

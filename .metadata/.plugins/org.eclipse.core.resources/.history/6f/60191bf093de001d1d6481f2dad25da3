@@ -1,0 +1,23 @@
+package com.sp;
+
+public class Bracket {
+	static char[] stack;
+	static int top;
+	static void createStack( int size)
+	{
+		stack  = new char[size];
+		top=-1;
+		System.out.println(" stack has been created in the size of : "+size);	
+	}
+	public static void  push( int element)
+	{
+	}
+	
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

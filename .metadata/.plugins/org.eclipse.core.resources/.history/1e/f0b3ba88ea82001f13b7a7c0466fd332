@@ -1,0 +1,175 @@
+package com.test.kickstart;
+
+import java.util.*;
+
+class SalesExecutive {
+    String id;  // Unique identifier for the sales executive (e.g., SE1, SE2)
+    int sales;  // Sales figure in millions of INR handled by this executive
+    List<SalesExecutive> subordinates;  // List of subordinates reporting to this executive
+
+    // Constructor to create a SalesExecutive with an ID and sales figure
+    public SalesExecutive(String id, int sales) {
+        this.id = id;
+        this.sales = sales;
+        this.subordinates = new ArrayList<>();  // Initialize subordinates as an empty list
+    }
+}
+
+public class OrganizationBonusDistribution {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Step 1: Input number of executives
+        int numExecutives = 0;
+        while (true) {
+            try {
+                System.out.print("Enter the number of sales executives: ");
+                numExecutives = scanner.nextInt();  // Input number of sales executives
+                break;
+            } catch (InputMismatchException e) {
+                System.out.println("Please enter a valid integer for the number of executives.");
+                scanner.next();  // Clear the invalid input
+            }
+        }
+
+        // Map to store the sales executives by their ID
+        Map<String, SalesExecutive> executivesMap = new HashMap<>();
+
+        // Step 2: Input sales figures for each executive
+        for (int i = 0; i < numExecutives; i++) {
+            String id = "";
+            int sales = 0;
+
+            System.out.print("Enter ID for sales executive (e.g., SE1): ");
+            id = scanner.next();  // Input sales executive ID
+
+            // Input sales figure for the executive
+            while (true) {
+                try {
+                    System.out.print("Enter sales figure (in millions) for " + id + ": ");
+                    sales = scanner.nextInt();  // Input sales figure
+                    break;
+                } catch (InputMismatchException e) {
+                    System.out.println("Please enter a valid integer for the sales figure.");
+                    scanner.next();  // Clear the invalid input
+                }
+            }
+
+            // Create the SalesExecutive object and store it in the map
+            SalesExecutive executive = new SalesExecutive(id, sales);
+            executivesMap.put(id, executive);
+        }
+
+        // Step 3: Input hierarchy relationships (i.e., who reports to whom)
+        int numRelationships = 0;
+        while (true) {
+            try {
+                System.out.print("Enter the number of relationships (manager-subordinate pairs): ");
+                numRelationships = scanner.nextInt();  // Input the number of relationships
+                break;
+            } catch (InputMismatchException e) {
+                System.out.println("Please enter a valid integer for the number of relationships.");
+                scanner.next();  // Clear the invalid input
+            }
+        }
+
+        System.out.println("Enter the relationships (manager_id subordinate_id): ");
+        for (int i = 0; i < numRelationships; i++) {
+            String managerId = scanner.next();  // Manager's ID
+            String subordinateId = scanner.next();  // Subordinate's ID
+
+            // Fetch the manager and subordinate from the map
+            SalesExecutive manager = executivesMap.get(managerId);
+            SalesExecutive subordinate = executivesMap.get(subordinateId);
+            if (manager != null && subordinate != null) {
+                // Add the subordinate to the manager's list of subordinates
+                manager.subordinates.add(subordinate);
+            } else {
+                System.out.println("Invalid manager or subordinate ID. Please try again.");
+                i--;  // Decrement i to retry this input
+            }
+        }
+
+        // Step 4: Input total bonus amount to be distributed
+        double totalBonus = 0;
+        while (true) {
+            try {
+                System.out.print("Enter the total bonus amount (in rupees): ");
+                totalBonus = scanner.nextDouble();  // Input the total bonus
+                break;
+            } catch (InputMismatchException e) {
+                System.out.println("Please enter a valid number for the total bonus.");
+                scanner.next();  // Clear the invalid input
+            }
+        }
+
+        // Step 5: Find the root of the hierarchy (assuming SE1 is the top-most executive)
+        SalesExecutive root = executivesMap.get("SE1");
+
+        // Step 6: Distribute the bonus based on the line with the highest sales
+        lineWithHighestSales(root, totalBonus);
+    }
+
+    // Method to calculate and display the bonus distribution for the line with the highest sales
+    public static void lineWithHighestSales(SalesExecutive root, double totalBonus) {
+        List<SalesExecutive> bestLine = findBestSalesLine(root);  // Find the best sales line
+
+        // Split the total bonus into budget and sales portions
+        double budgetBonus = totalBonus * 0.25;
+        double salesBonus = totalBonus * 0.75;
+
+        // Calculate the total number of subordinates in the best line
+        int totalSubordinates = bestLine.stream().mapToInt(executive -> executive.subordinates.size()).sum();
+        // Calculate the total sales in the best line
+        int totalSales = bestLine.stream().mapToInt(executive -> executive.sales).sum();
+
+        System.out.println("Employee ID\t\tBonus");
+
+        // Calculate and display the bonus for each executive in the best line
+        for (SalesExecutive executive : bestLine) {
+            int subordinates = executive.subordinates.size();
+            // Calculate the bonus portion based on subordinates
+            double subBonus = (subordinates / (double) totalSubordinates) * budgetBonus;
+
+            // Calculate the bonus portion based on sales
+            double salesProportion = (executive.sales / (double) totalSales) * salesBonus;
+
+            // Total bonus for the executive
+            double totalExecutiveBonus = subBonus + salesProportion;
+
+            System.out.println(executive.id + "\t\t\t" + (int) totalExecutiveBonus);
+        }
+    }
+
+    // Recursive method to find the line with the highest sales
+    private static List<SalesExecutive> findBestSalesLine(SalesExecutive executive) {
+        List<SalesExecutive> bestLine = new ArrayList<>();
+        bestLine.add(executive);  // Start with the current executive
+
+        // If the executive has no subordinates, return this as the best line
+        if (executive.subordinates.isEmpty()) {
+            return bestLine;
+        }
+
+        // Variables to track the best subordinate line
+        List<SalesExecutive> bestSubordinateLine = null;
+        int maxSales = Integer.MIN_VALUE;
+
+        // Recursively check each subordinate to find the line with the highest sales
+        for (SalesExecutive subordinate : executive.subordinates) {
+            List<SalesExecutive> currentLine = findBestSalesLine(subordinate);
+            int currentLineSales = currentLine.stream().mapToInt(e -> e.sales).sum();
+
+            // Update if the current subordinate line has more sales than the previous max
+            if (currentLineSales > maxSales) {
+                maxSales = currentLineSales;
+                bestSubordinateLine = currentLine;
+            }
+        }
+
+        // Add the best subordinate line to the current line
+        bestLine.addAll(bestSubordinateLine);
+        return bestLine;
+    }
+}

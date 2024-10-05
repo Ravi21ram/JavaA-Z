@@ -1,0 +1,149 @@
+package com.test.kickstart;
+
+import java.util.*;
+
+class SalesExecutive {
+    String id;
+    int sales;
+    List<SalesExecutive> subordinates;
+
+    public SalesExecutive(String id, int sales) {
+        this.id = id;
+        this.sales = sales;
+        this.subordinates = new ArrayList<>();
+    }
+}
+
+public class OrganizationBonusDistribution {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        int numExecutives = 0;
+        while (true) {
+            try {
+                System.out.print("Enter the number of sales executives: ");
+                numExecutives = scanner.nextInt();
+                break; // exit loop if input is valid
+            } catch (InputMismatchException e) {
+                System.out.println("Please enter a valid integer for the number of executives.");
+                scanner.next(); // clear the invalid input
+            }
+        }
+
+        Map<String, SalesExecutive> executivesMap = new HashMap<>();
+
+        for (int i = 0; i < numExecutives; i++) {
+            String id = "";
+            int sales = 0;
+
+            System.out.print("Enter ID for sales executive (e.g., SE1): ");
+            id = scanner.next();
+
+            while (true) {
+                try {
+                    System.out.print("Enter sales figure (in millions) for " + id + ": ");
+                    sales = scanner.nextInt();
+                    break; // exit loop if input is valid
+                } catch (InputMismatchException e) {
+                    System.out.println("Please enter a valid integer for the sales figure.");
+                    scanner.next(); // clear the invalid input
+                }
+            }
+
+            SalesExecutive executive = new SalesExecutive(id, sales);
+            executivesMap.put(id, executive);
+        }
+
+        int numRelationships = 0;
+        while (true) {
+            try {
+                System.out.print("Enter the number of relationships (i.e., manager-subordinate pairs): ");
+                numRelationships = scanner.nextInt();
+                break; // exit loop if input is valid
+            } catch (InputMismatchException e) {
+                System.out.println("Please enter a valid integer for the number of relationships.");
+                scanner.next(); // clear the invalid input
+            }
+        }
+
+        System.out.println("Enter the relationships (manager_id subordinate_id): ");
+        for (int i = 0; i < numRelationships; i++) {
+            String managerId = scanner.next();
+            String subordinateId = scanner.next();
+
+            SalesExecutive manager = executivesMap.get(managerId);
+            SalesExecutive subordinate = executivesMap.get(subordinateId);
+            if (manager != null && subordinate != null) {
+                manager.subordinates.add(subordinate);
+            } else {
+                System.out.println("Invalid manager or subordinate ID. Please try again.");
+                i--;  
+            }
+        }
+
+        double totalBonus = 0;
+        while (true) {
+            try {
+                System.out.print("Enter the total bonus amount (in rupees): ");
+                totalBonus = scanner.nextDouble();
+                break; 
+            } catch (InputMismatchException e) {
+                System.out.println("Please enter a valid number for the total bonus.");
+                scanner.next(); 
+            }
+        }
+
+        SalesExecutive root = executivesMap.get("SE1");  
+
+        lineWithHighestSales(root, totalBonus);
+    }
+
+    public static void lineWithHighestSales(SalesExecutive root, double totalBonus) {
+        List<SalesExecutive> bestLine = findBestSalesLine(root);
+
+        double budgetBonus = totalBonus * 0.25;
+        double salesBonus = totalBonus * 0.75;
+
+        int totalSubordinates = bestLine.stream().mapToInt(executive -> executive.subordinates.size()).sum();
+        int totalSales = bestLine.stream().mapToInt(executive -> executive.sales).sum();
+
+        System.out.println("Employee ID\t\tBonus");
+
+        for (SalesExecutive executive : bestLine) {
+            int subordinates = executive.subordinates.size();
+            double subBonus = (subordinates / (double) totalSubordinates) * budgetBonus;
+
+            double salesProportion = (executive.sales / (double) totalSales) * salesBonus;
+
+            double totalExecutiveBonus = subBonus + salesProportion;
+
+            System.out.println(executive.id + "\t\t\t" + (int) totalExecutiveBonus);
+        }
+    }
+
+    private static List<SalesExecutive> findBestSalesLine(SalesExecutive executive) {
+        List<SalesExecutive> bestLine = new ArrayList<>();
+        bestLine.add(executive);
+
+        if (executive.subordinates.isEmpty()) {
+            return bestLine;
+        }
+
+        List<SalesExecutive> bestSubordinateLine = null;
+        int maxSales = Integer.MIN_VALUE;
+
+        for (SalesExecutive subordinate : executive.subordinates) {
+            List<SalesExecutive> currentLine = findBestSalesLine(subordinate);
+            int currentLineSales = currentLine.stream().mapToInt(e -> e.sales).sum();
+
+            if (currentLineSales > maxSales) {
+                maxSales = currentLineSales;
+                bestSubordinateLine = currentLine;
+            }
+        }
+
+        bestLine.addAll(bestSubordinateLine);
+        return bestLine;
+    }
+}
