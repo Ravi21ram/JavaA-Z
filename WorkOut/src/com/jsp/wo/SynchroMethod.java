@@ -44,7 +44,7 @@ public class SynchroMethod extends Thread {
 		
 		SynchroMethod s1= new SynchroMethod();
 		s1.start();
-		System.out.println("------******-----");
+		System.out.println("------   -----");
 		Serial s2= new Serial();
 		s2.start();
 

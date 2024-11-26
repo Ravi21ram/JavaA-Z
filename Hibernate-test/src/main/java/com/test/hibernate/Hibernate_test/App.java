@@ -1,6 +1,6 @@
 package com.test.hibernate.Hibernate_test;
 
-/**
+/ 
  * Hello world!
  *
  */

@@ -1,49 +1,39 @@
 package logical.one.test;
 
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class DuplicatesInAnArray {
 
+    public static void check(int[] num) {
+        HashMap<Integer, Integer> frequencyMap = new HashMap<>();
+        int pairCount = 0;
 
-	public static void check(int []num)
-	{
-		int pair=0;
-		for (int i=0;i<=num.length-1;i++)
-		{
-			int count =0;
-			for(int j=i+1;j<=num.length-1;j++)
-			{
-				if(num[i]==num[j])
-				{
-					count++;
-					num[j]=-1;
-				}
-			}
-			if(num[i]!=-1)
-	         {
-				pair=pair+count/2;
-	       }
-			System.out.print(num[i]+  " "+pair);
-		}
-		
-		
-	}
+        // Count the frequency of each element
+        for (int value : num) {
+            frequencyMap.put(value, frequencyMap.getOrDefault(value, 0) + 1);
+        }
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		Scanner sc= new Scanner(System.in);
-		System.out.println("enter the size");
-		int size=sc.nextInt();
-		int n[]=new int[size];
-		System.out.println("Enter the elements");
-		for(int i=0;i<=n.length-1;i++)
-		{
-			 n[i]=sc.nextInt();
-		}
-		DuplicatesInAnArray.check(n);
-		
-		
+        // Calculate pairs for each unique element
+        for (int count : frequencyMap.values()) {
+            pairCount += count / 2; // Each pair consists of two identical elements
+        }
 
-	}
+        System.out.println("Total pairs: " + pairCount);
+    }
 
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the size of the array:");
+        int size = sc.nextInt();
+        int[] n = new int[size];
+
+        System.out.println("Enter the elements of the array:");
+        for (int i = 0; i < size; i++) {
+            n[i] = sc.nextInt();
+        }
+
+        check(n);
+        sc.close();
+    }
 }

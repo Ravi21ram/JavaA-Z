@@ -1,0 +1,1 @@
+memberSearchIndex = [{"p":"com.test.one","c":"DiwaliSaleBOGO","l":"calculateBOGO(List<Integer>)","u":"calculateBOGO(java.util.List)"},{"p":"com.test.one","c":"DiwaliSaleBOGO","l":"DiwaliSaleBOGO()","u":"%3Cinit%3E()"},{"p":"com.test.one","c":"DiwaliSaleBOGO","l":"main(String[])","u":"main(java.lang.String[])"}];updateSearchResults();

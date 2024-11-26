@@ -38,7 +38,7 @@ public class Stack {
 			  System.out.println(stack[i]+" last in first out");
 		  }
 	  }
-	  System.out.println("**************************************");
+	  System.out.println("                   ");
   }
   public static void pop()
   {
