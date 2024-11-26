@@ -2040,3 +2040,71 @@ user global configuration and to define the default location to store repositori
 not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
 EGit might behave differently since they see different configuration options.
 This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.egit.core 4 0 2024-11-26 20:21:54.883
+!MESSAGE An exception occurred during push on URI https://github.com/Ravi21ram/JavaA-Z.git: https://github.com/Ravi21ram/JavaA-Z.git: not authorized
+!STACK 0
+org.eclipse.jgit.errors.TransportException: https://github.com/Ravi21ram/JavaA-Z.git: not authorized
+	at org.eclipse.jgit.transport.TransportHttp.connect(TransportHttp.java:696)
+	at org.eclipse.jgit.transport.TransportHttp.connect(TransportHttp.java:638)
+	at org.eclipse.jgit.transport.TransportHttp.openPush(TransportHttp.java:541)
+	at org.eclipse.jgit.transport.PushProcess.execute(PushProcess.java:138)
+	at org.eclipse.jgit.transport.Transport.push(Transport.java:1537)
+	at org.eclipse.egit.core.op.PushOperation.run(PushOperation.java:269)
+	at org.eclipse.egit.ui.internal.push.PushJob.performJob(PushJob.java:86)
+	at org.eclipse.egit.ui.internal.jobs.RepositoryJob.run(RepositoryJob.java:59)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.egit.ui 4 0 2024-11-26 20:21:54.894
+!MESSAGE Can't connect to any repository: https://github.com/Ravi21ram/JavaA-Z.git (https://github.com/Ravi21ram/JavaA-Z.git: not authorized)
+
+!ENTRY org.eclipse.egit.core 4 0 2024-11-26 20:28:18.679
+!MESSAGE An exception occurred during push on URI https://gitlab.ccapps.in/cmdr/cm-dragent.git: https://gitlab.ccapps.in/cmdr/cm-dragent.git: connection failed
+!STACK 0
+org.eclipse.jgit.errors.TransportException: https://gitlab.ccapps.in/cmdr/cm-dragent.git: connection failed
+	at org.eclipse.jgit.transport.TransportHttp.connect(TransportHttp.java:740)
+	at org.eclipse.jgit.transport.TransportHttp.connect(TransportHttp.java:638)
+	at org.eclipse.jgit.transport.TransportHttp.openPush(TransportHttp.java:541)
+	at org.eclipse.jgit.transport.PushProcess.execute(PushProcess.java:138)
+	at org.eclipse.jgit.transport.Transport.push(Transport.java:1537)
+	at org.eclipse.egit.core.op.PushOperation.run(PushOperation.java:269)
+	at org.eclipse.egit.ui.internal.push.PushJob.performJob(PushJob.java:86)
+	at org.eclipse.egit.ui.internal.jobs.RepositoryJob.run(RepositoryJob.java:59)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+Caused by: java.net.ConnectException: Connect to gitlab.ccapps.in:443 [gitlab.ccapps.in/194.233.93.188] failed: Connection refused: no further information gitlab.ccapps.in
+	at org.eclipse.jgit.util.HttpSupport.response(HttpSupport.java:240)
+	at org.eclipse.jgit.transport.TransportHttp.connect(TransportHttp.java:665)
+	... 8 more
+
+!ENTRY org.eclipse.egit.ui 4 0 2024-11-26 20:28:18.681
+!MESSAGE Can't connect to any repository: https://gitlab.ccapps.in/cmdr/cm-dragent.git (https://gitlab.ccapps.in/cmdr/cm-dragent.git: connection failed)
+
+!ENTRY org.eclipse.egit.core 4 0 2024-11-26 21:33:14.351
+!MESSAGE An exception occurred during push on URI https://github.com/Ravi21ram/Impledge-Recruitment.git: https://github.com/Ravi21ram/Impledge-Recruitment.git: not authorized
+!STACK 0
+org.eclipse.jgit.errors.TransportException: https://github.com/Ravi21ram/Impledge-Recruitment.git: not authorized
+	at org.eclipse.jgit.transport.TransportHttp.connect(TransportHttp.java:696)
+	at org.eclipse.jgit.transport.TransportHttp.connect(TransportHttp.java:638)
+	at org.eclipse.jgit.transport.TransportHttp.openPush(TransportHttp.java:541)
+	at org.eclipse.jgit.transport.PushProcess.execute(PushProcess.java:138)
+	at org.eclipse.jgit.transport.Transport.push(Transport.java:1537)
+	at org.eclipse.egit.core.op.PushOperation.run(PushOperation.java:269)
+	at org.eclipse.egit.ui.internal.push.PushJob.performJob(PushJob.java:86)
+	at org.eclipse.egit.ui.internal.jobs.RepositoryJob.run(RepositoryJob.java:59)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.egit.ui 4 0 2024-11-26 21:33:14.374
+!MESSAGE Can't connect to any repository: https://github.com/Ravi21ram/Impledge-Recruitment.git (https://github.com/Ravi21ram/Impledge-Recruitment.git: not authorized)
+
+!ENTRY org.eclipse.egit.core 4 0 2024-11-26 21:34:26.567
+!MESSAGE An exception occurred during push on URI https://github.com/Ravi21ram/Impledge-Recruitment.git: https://github.com/Ravi21ram/Impledge-Recruitment.git: not authorized
+!STACK 0
+org.eclipse.jgit.errors.TransportException: https://github.com/Ravi21ram/Impledge-Recruitment.git: not authorized
+	at org.eclipse.jgit.transport.TransportHttp.connect(TransportHttp.java:696)
+	at org.eclipse.jgit.transport.TransportHttp.connect(TransportHttp.java:638)
+	at org.eclipse.jgit.transport.TransportHttp.openPush(TransportHttp.java:541)
+	at org.eclipse.jgit.transport.PushProcess.execute(PushProcess.java:138)
+	at org.eclipse.jgit.transport.Transport.push(Transport.java:1537)
+	at org.eclipse.egit.core.op.PushOperation.run(PushOperation.java:269)
+	at org.eclipse.egit.ui.internal.push.ConfirmationPage$2.run(ConfirmationPage.java:204)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:122)
